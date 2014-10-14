@@ -4,4 +4,6 @@ node_js:
   - "0.11"
 script:
   - "npm run build"
-  - "npm run coveralls"
+  # Generators are not supported in Gulp so far.
+  #   https://github.com/dylanb/gulp-coverage/issues/21 
+  # - "npm run coveralls"
