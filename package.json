@@ -1,7 +1,7 @@
 {
   "name": "node-debug-switcher",
-  "version": "0.0.1",
-  "description": "Custom console for nodejs",
+  "version": "0.0.2",
+  "description": "Switch NODE_DEBUG per request",
   "main": "lib/index.js",
   "scripts": {
     "build": "gulp --harmony build",
