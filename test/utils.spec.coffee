@@ -4,7 +4,7 @@ sinonChai = require 'sinon-chai'
 expect = chai.expect
 chai.use(sinonChai)
 
-utils = require '../src/utils'
+utils = require '../lib/utils'
 
 describe 'utils', ->
   beforeEach ->

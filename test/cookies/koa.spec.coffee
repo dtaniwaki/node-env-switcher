@@ -7,7 +7,7 @@ chai.use(sinonChai)
 http = require 'http'
 koa = require 'koa'
 request = require 'supertest'
-handler = require '../../src/cookies/koa'
+handler = require '../../lib/cookies/koa'
 
 describe 'cookies/koa', ->
   beforeEach ->
