@@ -17,10 +17,11 @@ Coming soon...
 ### Koa
 
 ```javascript
-switcher = require('node-debug-switcher').cookies.koa
+var koa = require('koa');
+var switcher = require('node-debug-switcher').cookies.koa;
 
-app = koa()
-app.use(switcher('cookie_name'))
+app = koa();
+app.use(switcher('cookie_name'));
 ```
 
 ## Options
