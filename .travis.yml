@@ -5,6 +5,7 @@ node_js:
 script:
   - "npm run prepare"
   - "npm run build"
+  - "npm run test"
   # Generators are not supported in Gulp so far.
   #   https://github.com/dylanb/gulp-coverage/issues/21 
   # - "npm run coveralls"
