@@ -12,11 +12,29 @@ Switch NODE_DEBUG per request.
 
 ### Express
 
+Coming soon...
+
 ### Koa
+
+```javascript
+switcher = require('node-debug-switcher')
+
+app = koa()
+app.use(switcher('cookie_name'))
+```
 
 ## Options
 
-### Base64
+### Secure
+
+Encrypt the cookie value.
+
+```javascript
+switcher = require('node-debug-switcher')
+switcher('cookie', secure: true, password: 'foo')
+```
+
+Execute `node-debug-switcher <string_to_encrypt> <password>` to get the encrypted value.
 
 ## Contributing
 
