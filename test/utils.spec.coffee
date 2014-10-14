@@ -13,18 +13,14 @@ describe 'utils', ->
   afterEach ->
     @sandbox.restore()
 
-  describe '#encodeBase64', ->
+  describe '#encode64Cipher', ->
     it 'encodes strings', ->
-      expect(utils.encodeBase64('abcdefg')).to.be.eq 'YWJjZGVmZw'
+      expect(utils.encode64Cipher('abcdefg', 'aiueo')).to.be.eq 'CPYcTUbq0TwKuQT1pnI2xA=='
 
-    describe 'chomp padding', ->
-      it 'encodes strings', ->
-        expect(utils.encodeBase64('aaa')).to.be.eq 'YWFh'
-
-  describe '#decodeBase64', ->
+  describe '#decode64Cipher', ->
     it 'decodes strings', ->
-      expect(utils.decodeBase64('YWJjZGVmZw')).to.be.eq 'abcdefg'
+      expect(utils.decode64Cipher('CPYcTUbq0TwKuQT1pnI2xA==', 'aiueo')).to.be.eq 'abcdefg'
 
-    describe 'add padding', ->
+    describe 'invalid string', ->
       it 'decodes strings', ->
-        expect(utils.decodeBase64('YWFh')).to.be.eq 'aaa'
+        expect(utils.decode64Cipher('aaa', 'aiueo')).to.be.eq ''

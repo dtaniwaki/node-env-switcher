@@ -20,7 +20,6 @@ describe 'cookies/koa', ->
     process.env.NODE_DEBUG ||= ''
     @sandbox.stub process.env, 'NODE_DEBUG', 'init'
     @app = koa()
-    @app.use handler('test')
     @app.on 'error', (err) ->
       throw err unless err.status?
     
@@ -38,6 +37,7 @@ describe 'cookies/koa', ->
   describe 'with cookie', ->
     describe 'normal case', ->
       beforeEach ->
+        @app.use handler('test')
         @app.use @middleware
         @server = http.createServer @app.callback()
 
@@ -53,6 +53,7 @@ describe 'cookies/koa', ->
 
     describe 'exception', ->
       beforeEach ->
+        @app.use handler('test')
         @app.use @errorMiddleware
         @server = http.createServer @app.callback()
 
@@ -66,9 +67,26 @@ describe 'cookies/koa', ->
           expect(process.env.NODE_DEBUG).to.be.eq 'init'
           done(err)
 
+    describe 'secure option', ->
+      beforeEach ->
+        @app.use handler('test', secure: true, password: 'bar')
+        @app.use @middleware
+        @server = http.createServer @app.callback()
+
+      it 'switches NODE_DEBUG', (done) ->
+        request(@server)
+        .get '/'
+        .set 'Cookie', 'test=2ZiAnuJ7MWmj8Clr4m835g=='
+        .end (err, res) =>
+          return done err if err
+          expect(@debug).to.be.eq 'foo'
+          expect(process.env.NODE_DEBUG).to.be.eq 'init'
+          done(err)
+
   describe 'without cookie', ->
     describe 'normal case', ->
       beforeEach ->
+        @app.use handler('test')
         @app.use @middleware
         @server = http.createServer @app.callback()
 
@@ -83,6 +101,7 @@ describe 'cookies/koa', ->
 
     describe 'exception', ->
       beforeEach ->
+        @app.use handler('test')
         @app.use @errorMiddleware
         @server = http.createServer @app.callback()
 

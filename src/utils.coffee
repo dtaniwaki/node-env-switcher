@@ -1,14 +1,18 @@
+crypto = require 'crypto'
+
 module.exports =
-  encodeBase64: (s) ->
+  encode64Cipher: (s, password) ->
     try
-      new Buffer(s).toString('base64').replace(/[=]*$/, '').replace(/\+/, '-').replace(/\//, '_')
-    catch err
+      cipher = crypto.createCipher('aes-256-cbc', password)
+      cipher.update s
+      cipher.final('base64')
+    catch
       ''
 
-  decodeBase64: (s) ->
+  decode64Cipher: (s, password) ->
     try
-      while (s.length % 4) != 0
-        s += '='
-      new Buffer(s, 'base64').toString()
+      cipher = crypto.createDecipher('aes-256-cbc', password)
+      cipher.update s, 'base64'
+      cipher.final().toString()
     catch
       ''
