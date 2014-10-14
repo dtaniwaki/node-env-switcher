@@ -17,7 +17,7 @@ Coming soon...
 ### Koa
 
 ```javascript
-switcher = require('node-debug-switcher')
+switcher = require('node-debug-switcher').cookies.koa
 
 app = koa()
 app.use(switcher('cookie_name'))
@@ -30,7 +30,7 @@ app.use(switcher('cookie_name'))
 Encrypt the cookie value.
 
 ```javascript
-switcher = require('node-debug-switcher')
+switcher = require('node-debug-switcher').cookies.koa
 switcher('cookie', secure: true, password: 'foo')
 ```
 
