@@ -1,6 +1,6 @@
 {
   "name": "node-debug-switcher",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Switch NODE_DEBUG per request",
   "main": "lib/index.js",
   "scripts": {
