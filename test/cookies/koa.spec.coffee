@@ -1,0 +1,97 @@
+chai = require 'chai'
+sinon = require 'sinon'
+sinonChai = require 'sinon-chai'
+expect = chai.expect
+chai.use(sinonChai)
+
+http = require 'http'
+koa = require 'koa'
+request = require 'supertest'
+handler = require '../../src/cookies/koa'
+
+describe 'cookies/koa', ->
+  beforeEach ->
+    @sandbox = sinon.sandbox.create()
+
+  afterEach ->
+    @sandbox.restore()
+
+  beforeEach ->
+    process.env.NODE_DEBUG ||= ''
+    @sandbox.stub process.env, 'NODE_DEBUG', 'init'
+    @app = koa()
+    @app.use handler('test')
+    @app.on 'error', (err) ->
+      throw err unless err.status?
+    
+    @debug = ''
+
+    @middleware = (next) =>
+      @debug = process.env.NODE_DEBUG
+      yield next
+    @errorMiddleware = (next) =>
+      @debug = process.env.NODE_DEBUG
+      @throw 500
+      yield next
+
+
+  describe 'with cookie', ->
+    describe 'normal case', ->
+      beforeEach ->
+        @app.use @middleware
+        @server = http.createServer @app.callback()
+
+      it 'switches NODE_DEBUG', (done) ->
+        request(@server)
+        .get '/'
+        .set 'Cookie', 'test=foo'
+        .end (err, res) =>
+          return done err if err
+          expect(@debug).to.be.eq 'foo'
+          expect(process.env.NODE_DEBUG).to.be.eq 'init'
+          done(err)
+
+    describe 'exception', ->
+      beforeEach ->
+        @app.use @errorMiddleware
+        @server = http.createServer @app.callback()
+
+      it 'switches NODE_DEBUG', (done) ->
+        request(@server)
+        .get '/'
+        .set 'Cookie', 'test=foo'
+        .end (err, res) =>
+          return done err if err
+          expect(@debug).to.be.eq 'foo'
+          expect(process.env.NODE_DEBUG).to.be.eq 'init'
+          done(err)
+
+  describe 'without cookie', ->
+    describe 'normal case', ->
+      beforeEach ->
+        @app.use @middleware
+        @server = http.createServer @app.callback()
+
+      it 'switches NODE_DEBUG', (done) ->
+        request(@server)
+        .get '/'
+        .end (err, res) =>
+          return done err if err
+          expect(@debug).to.be.eq 'init'
+          expect(process.env.NODE_DEBUG).to.be.eq 'init'
+          done(err)
+
+    describe 'exception', ->
+      beforeEach ->
+        @app.use @errorMiddleware
+        @server = http.createServer @app.callback()
+
+      it 'switches NODE_DEBUG', (done) ->
+        request(@server)
+        .get '/'
+        .end (err, res) =>
+          return done err if err
+          expect(@debug).to.be.eq 'init'
+          expect(process.env.NODE_DEBUG).to.be.eq 'init'
+          done(err)
+
