@@ -8,7 +8,7 @@
     "test": "gulp --harmony test",
     "coverage": "gulp --harmony coverage",
     "coveralls": "gulp --harmony coveralls",
-    "postinstall": "cd node_modules/gulp-coffeelint/node_modules/coffeelint/node_modules/ && rm -fr coffee-script && ln -nfs ../../../../../node_modules/coffee-script ."
+    "prepare": "cd node_modules/gulp-coffeelint/node_modules/coffeelint/node_modules/ && rm -fr coffee-script && ln -nfs ../../../../../node_modules/coffee-script ."
   },
   "repository": {
     "type": "git",
