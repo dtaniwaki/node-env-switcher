@@ -10,9 +10,17 @@ Switch NODE_DEBUG per request.
 
 ## Usage
 
-### Express
+### Express 4.0
 
-Coming soon...
+```javascript
+var express = require('express');
+var cookieParser = require('cookie-parser');
+var switcher = require('node-debug-switcher').cookies.koa;
+
+app = express();
+app.use(cookieParser());
+app.use(switcher('cookie_name'));
+```
 
 ### Koa
 
