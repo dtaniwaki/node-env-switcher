@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.coffee"],"names":[],"mappings":"AAAA,MAAM,CAAC,OAAP,GAAiB,SAAA,GAAA;SACf;AAAA,IAAA,OAAA,EAAS,OAAA,CAAQ,WAAR,CAAT;IADe;AAAA,CAAjB,CAAA","file":"index.js","sourceRoot":"/src","sourcesContent":["module.exports = ->\n  cookies: require './cookies'\n"]}
