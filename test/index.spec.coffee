@@ -13,5 +13,6 @@ describe 'index', ->
   afterEach ->
     @sandbox.restore()
 
-  it 'returns objects', ->
-    expect(typeof index.cookies).to.be.eq 'object'
+  it 'returns functions', ->
+    expect(typeof index.express).to.be.eq 'function'
+    expect(typeof index.koa).to.be.eq 'function'

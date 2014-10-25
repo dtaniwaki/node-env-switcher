@@ -7,9 +7,9 @@ chai.use(sinonChai)
 http = require 'http'
 koa = require 'koa'
 request = require 'supertest'
-handler = require '../../lib/cookies/koa'
+handler = require '../lib/koa'
 
-describe 'cookies/koa', ->
+describe 'koa', ->
   beforeEach ->
     @sandbox = sinon.sandbox.create()
 

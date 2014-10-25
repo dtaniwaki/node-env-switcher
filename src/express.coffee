@@ -1,4 +1,4 @@
-utils = require '../utils'
+utils = require './utils'
 assert = require 'assert'
 
 module.exports = (key, options) ->
@@ -6,16 +6,21 @@ module.exports = (key, options) ->
   secure = options.secure
   password = options.password
   env = options.env || 'NODE_DEBUG'
+  type = options.type || 'cookie'
 
   assert password, 'password is required' if secure
 
   (req, res, next) ->
     debug = process.env[env]
 
-    newDebug = req.cookies?[key]
-    if secure
-      newDebug = utils.decode64Cipher(newDebug, password)
-    process.env[env] = newDebug if newDebug
+    switch type
+      when 'cookie'
+        newDebug = req.cookies?[key]
+
+    if newDebug
+      if secure
+        newDebug = utils.decode64Cipher(newDebug, password)
+      process.env[env] = newDebug
 
     try
       next()

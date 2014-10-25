@@ -9,9 +9,9 @@ domain = require 'domain'
 express = require 'express'
 cookieParser = require 'cookie-parser'
 request = require 'supertest'
-handler = require '../../lib/cookies/express'
+handler = require '../lib/express'
 
-describe 'cookies/express', ->
+describe 'express', ->
   beforeEach ->
     @sandbox = sinon.sandbox.create()
 
