@@ -15,32 +15,38 @@ Switch NODE_DEBUG per request.
 ```javascript
 var express = require('express');
 var cookieParser = require('cookie-parser');
-var switcher = require('node-debug-switcher').cookies.koa;
+var switcher = require('node-debug-switcher').express;
 
 app = express();
 app.use(cookieParser());
-app.use(switcher('cookie_name'));
+// Switch by cookie
+app.use(switcher('name', type: 'cookie'));
+// Switch by query
+app.use(switcher('name', type: 'query'));
 ```
 
 ### Koa
 
 ```javascript
 var koa = require('koa');
-var switcher = require('node-debug-switcher').cookies.koa;
+var switcher = require('node-debug-switcher').koa;
 
 app = koa();
-app.use(switcher('cookie_name'));
+// Switch by cookie
+app.use(switcher('name', type: 'cookie'));
+// Switch by query
+app.use(switcher('name', type: 'query'));
 ```
 
 ## Options
 
 ### Secure
 
-Encrypt the cookie value.
+Encrypt the value.
 
 ```javascript
-switcher = require('node-debug-switcher').cookies.koa
-switcher('cookie', secure: true, password: 'foo')
+switcher = require('node-debug-switcher').koa
+switcher('name', secure: true, password: 'foo', type: 'cookie')
 ```
 
 Execute `node-debug-switcher <string_to_encrypt> <password>` to get the encrypted value.
