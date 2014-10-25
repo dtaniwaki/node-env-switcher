@@ -37,7 +37,7 @@ describe 'koa', ->
     describe 'with cookie', ->
       describe 'normal case', ->
         beforeEach ->
-          @app.use handler('test')
+          @app.use handler('test', type: 'cookie')
           @app.use @middleware
           @server = http.createServer @app.callback()
 
@@ -53,7 +53,7 @@ describe 'koa', ->
 
       describe 'exception', ->
         beforeEach ->
-          @app.use handler('test')
+          @app.use handler('test', type: 'cookie')
           @app.use @errorMiddleware
           @server = http.createServer @app.callback()
 
@@ -69,7 +69,7 @@ describe 'koa', ->
 
       describe 'secure option', ->
         beforeEach ->
-          @app.use handler('test', secure: true, password: 'bar')
+          @app.use handler('test', secure: true, password: 'bar', type: 'cookie')
           @app.use @middleware
           @server = http.createServer @app.callback()
 
@@ -86,7 +86,7 @@ describe 'koa', ->
     describe 'without cookie', ->
       describe 'normal case', ->
         beforeEach ->
-          @app.use handler('test')
+          @app.use handler('test', type: 'cookie')
           @app.use @middleware
           @server = http.createServer @app.callback()
 
@@ -101,7 +101,7 @@ describe 'koa', ->
 
       describe 'exception', ->
         beforeEach ->
-          @app.use handler('test')
+          @app.use handler('test', type: 'cookie')
           @app.use @errorMiddleware
           @server = http.createServer @app.callback()
 

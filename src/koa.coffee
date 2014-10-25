@@ -6,8 +6,9 @@ module.exports = (key, options) ->
   secure = options.secure
   password = options.password
   env = options.env || 'NODE_DEBUG'
-  type = options.type || 'cookie'
+  type = options.type
 
+  assert type, 'type is required'
   assert password, 'password is required' if secure
 
   (next) ->

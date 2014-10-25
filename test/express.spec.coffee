@@ -36,7 +36,7 @@ describe 'express', ->
   describe 'with cookie', ->
     describe 'normal case', ->
       beforeEach ->
-        @app.use handler('test')
+        @app.use handler('test', type: 'cookie')
         @app.use @middleware
         @server = http.createServer @app
 
@@ -52,7 +52,7 @@ describe 'express', ->
 
     describe 'exception', ->
       beforeEach ->
-        @app.use handler('test')
+        @app.use handler('test', type: 'cookie')
         @app.use @errorMiddleware
         @server = http.createServer @app
 
@@ -68,7 +68,7 @@ describe 'express', ->
 
     describe 'secure option', ->
       beforeEach ->
-        @app.use handler('test', secure: true, password: 'bar')
+        @app.use handler('test', secure: true, password: 'bar', type: 'cookie')
         @app.use @middleware
         @server = http.createServer @app
 
@@ -85,7 +85,7 @@ describe 'express', ->
   describe 'without cookie', ->
     describe 'normal case', ->
       beforeEach ->
-        @app.use handler('test')
+        @app.use handler('test', type: 'cookie')
         @app.use @middleware
         @server = http.createServer @app
 
@@ -100,7 +100,7 @@ describe 'express', ->
 
     describe 'exception', ->
       beforeEach ->
-        @app.use handler('test')
+        @app.use handler('test', type: 'cookie')
         @app.use @errorMiddleware
         @server = http.createServer @app
 
