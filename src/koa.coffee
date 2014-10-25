@@ -16,6 +16,8 @@ module.exports = (key, options) ->
     switch type
       when 'cookie'
         newDebug = @cookies.get key
+      when 'query'
+        newDebug = @query[key]
 
     if newDebug
       if secure

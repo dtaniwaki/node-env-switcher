@@ -16,6 +16,8 @@ module.exports = (key, options) ->
     switch type
       when 'cookie'
         newDebug = req.cookies?[key]
+      when 'query'
+        newDebug = req.query?[key]
 
     if newDebug
       if secure
