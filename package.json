@@ -1,7 +1,7 @@
 {
-  "name": "node-debug-switcher",
-  "version": "0.2.0",
-  "description": "Switch NODE_DEBUG per request",
+  "name": "node-env-switcher",
+  "version": "0.3.0",
+  "description": "Switch env per request",
   "main": "lib/index.js",
   "scripts": {
     "build": "gulp --harmony build",
@@ -12,11 +12,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/dtaniwaki/node-debug-switcher.git"
+    "url": "git://github.com/dtaniwaki/node-env-switcher.git"
   },
-  "homepage": "https://github.com/dtaniwaki/node-debug-switcher",
+  "homepage": "https://github.com/dtaniwaki/node-env-switcher",
   "bugs": {
-    "url": "https://github.com/dtaniwaki/node-debug-switcher/issues"
+    "url": "https://github.com/dtaniwaki/node-env-switcher/issues"
   },
   "keywords": [
     "node.js",
