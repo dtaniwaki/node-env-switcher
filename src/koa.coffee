@@ -29,5 +29,6 @@ module.exports = (key, options) ->
     try
       yield next
     finally
-      console.log "Restore the env #{env}:", debug
-      process.env[env] = debug
+      if newDebug
+        console.log "Restore the env #{env}:", debug
+        process.env[env] = debug
