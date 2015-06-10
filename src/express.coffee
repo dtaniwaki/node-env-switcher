@@ -23,11 +23,12 @@ module.exports = (key, options) ->
     if newDebug
       if secure
         newDebug = utils.decode64Cipher(newDebug, password)
+      console.log "Set the env #{env}:", newDebug
       process.env[env] = newDebug
 
     try
       next()
-    catch err
-      process.env[env] = debug
-      throw err
-    process.env[env] = debug
+    finally
+      if newDebug
+        console.log "Restore the env #{env}:", debug
+        process.env[env] = debug
