@@ -79,8 +79,8 @@ Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
 [npm-link]: http://badge.fury.io/js/node-env-switcher
 [build-image]: https://secure.travis-ci.org/dtaniwaki/node-env-switcher.svg
 [build-link]:  http://travis-ci.org/dtaniwaki/node-env-switcher
-[coverage-image]: https://img.shields.io/coveralls/dtaniwaki/node-env-switcher.svg
-[coverage-link]: https://coveralls.io/r/dtaniwaki/node-env-switcher
+[coverage-image]: https://img.shields.io/coveralls/dtaniwaki/node-env-switcher.svg?branch=master
+[coverage-link]: https://coveralls.io/r/dtaniwaki/node-env-switcher?branch=master
 [dep-image]: https://david-dm.org/dtaniwaki/node-env-switcher/status.svg
 [dep-link]: https://david-dm.org/dtaniwaki/node-env-switcher#info=dependencies
 [dev-dep-image]: https://david-dm.org/dtaniwaki/node-env-switcher/dev-status.svg
