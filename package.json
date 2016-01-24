@@ -39,6 +39,7 @@
     "gulp-mocha": "^1.1.1",
     "gulp-sourcemaps": "^1.2.4",
     "koa": "^0.12.2",
+    "run-sequence": "^1.1.5",
     "sinon-chai": "^2.6.0",
     "supertest": "^0.14.0"
   }

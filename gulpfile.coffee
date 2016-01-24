@@ -5,6 +5,7 @@ sourcemaps = require 'gulp-sourcemaps'
 mocha = require 'gulp-mocha'
 cover = require 'gulp-coverage'
 coveralls = require 'gulp-coveralls'
+runSequence = require('run-sequence')
 clean = require('gulp-clean')
 
 gulp.task 'clean', (done)->
@@ -53,6 +54,8 @@ gulp.task 'coveralls', (done) ->
       reporter: 'lcov'
     .pipe coveralls()
 
-gulp.task 'build', ['lint', 'compile']
+gulp.task 'build', (done) ->
+  runSequence('lint', 'compile', done)
 
-gulp.task 'default', ['build']
+gulp.task 'default', (done) ->
+  runSequence('clean', 'build', 'test', done)
