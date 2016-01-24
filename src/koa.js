@@ -1,4 +1,5 @@
-require('babel-polyfill')
+'use strict'
+
 const utils = require('./utils')
 const assert = require('assert')
 

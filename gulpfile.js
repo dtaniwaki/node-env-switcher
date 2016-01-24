@@ -2,8 +2,6 @@
 
 require('babel-core/register')
 var gulp = require('gulp')
-var babel = require('gulp-babel')
-var sourcemaps = require('gulp-sourcemaps')
 var mocha = require('gulp-mocha')
 var cover = require('gulp-coverage')
 var coveralls = require('gulp-coveralls')
@@ -43,19 +41,6 @@ gulp.task('fix', function () {
   })
 })
 
-gulp.task('compile', function () {
-  gulp.src(['src/**/*.js'])
-    .pipe(sourcemaps.init())
-    .pipe(babel({
-      presets: ['es2015']
-    }))
-    .pipe(sourcemaps.write('.', {
-      addComment: true,
-      sourceRoot: '/src'
-    }))
-    .pipe(gulp.dest('lib'))
-})
-
 gulp.task('test', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(mocha({
@@ -92,8 +77,4 @@ gulp.task('coveralls', ['rebuild'], function () {
     .pipe(coveralls())
 })
 
-gulp.task('build', gulpSequence('lint', 'compile'))
-
-gulp.task('rebuild', gulpSequence('clean', 'build'))
-
-gulp.task('default', gulpSequence('rebuild', 'test'))
+gulp.task('default', gulpSequence('lint', 'test'))

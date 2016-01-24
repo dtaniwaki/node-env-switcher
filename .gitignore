@@ -31,6 +31,3 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
-
-# Ignore lib to build it on install
-lib/
