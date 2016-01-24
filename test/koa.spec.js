@@ -7,7 +7,7 @@ chai.use(sinonChai)
 const http = require('http')
 const koa = require('koa')
 const request = require('supertest')
-const handler = require('../lib/koa')
+const handler = require('../src/koa')
 
 describe('koa', function () {
   let actualEnv

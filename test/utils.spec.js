@@ -4,7 +4,7 @@ const sinonChai = require('sinon-chai')
 let expect = chai.expect
 chai.use(sinonChai)
 
-const utils = require('../lib/utils')
+const utils = require('../src/utils')
 
 describe('utils', function () {
   beforeEach(function () {

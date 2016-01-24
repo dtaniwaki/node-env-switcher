@@ -8,7 +8,7 @@ const http = require('http')
 const express = require('express')
 const cookieParser = require('cookie-parser')
 const request = require('supertest')
-const handler = require('../lib/express')
+const handler = require('../src/express')
 
 describe('express', function () {
   let actualEnv

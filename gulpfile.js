@@ -76,7 +76,7 @@ gulp.task('test', function () {
 gulp.task('coverage', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(cover.instrument, {
-      pattern: ['lib/**/*.js'],
+      pattern: ['src/**/*.js'],
       debugDirectory: 'debug'
     })
     .pipe(mocha())
@@ -89,7 +89,7 @@ gulp.task('coverage', function () {
 gulp.task('coveralls', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(cover.instrument, {
-      pattern: ['lib/**/*.js'],
+      pattern: ['src/**/*.js'],
       debugDirectory: 'debug'
     })
     .pipe(mocha())

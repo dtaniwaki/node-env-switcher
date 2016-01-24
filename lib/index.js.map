@@ -1,1 +1,0 @@
-{"version":3,"sources":["index.js"],"names":[],"mappings":";;AAAA,OAAO,OAAP,GAAiB;AACf,WAAS,QAAQ,WAAR,CAAT;AACA,OAAK,QAAQ,OAAR,CAAL;CAFF","file":"index.js","sourcesContent":["module.exports = {\n  express: require('./express'),\n  koa: require('./koa')\n}\n"],"sourceRoot":"/src"}

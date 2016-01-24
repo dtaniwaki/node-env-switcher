@@ -4,7 +4,7 @@ const sinonChai = require('sinon-chai')
 let expect = chai.expect
 chai.use(sinonChai)
 
-const index = require('../lib/index')
+const index = require('../src/index')
 
 describe('index', function () {
   beforeEach(function () {
