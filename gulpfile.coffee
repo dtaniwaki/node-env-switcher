@@ -20,7 +20,9 @@ gulp.task 'lint', (done)->
 gulp.task 'compile', (done)->
   gulp.src ['src/**/*.coffee']
     .pipe sourcemaps.init()
-    .pipe coffee {bare: true, nodejs: true, harmony: true}
+    .pipe(babel({
+      presets: ['es2015']
+    }))
     .pipe sourcemaps.write '.',
       addComment: true
       sourceRoot: '/src'
