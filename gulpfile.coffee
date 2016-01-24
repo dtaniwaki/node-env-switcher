@@ -5,6 +5,11 @@ sourcemaps = require 'gulp-sourcemaps'
 mocha = require 'gulp-mocha'
 cover = require 'gulp-coverage'
 coveralls = require 'gulp-coveralls'
+clean = require('gulp-clean')
+
+gulp.task 'clean', (done)->
+  gulp.src(['src/**/*'], {read: false})
+  .pipe(clean())
 
 gulp.task 'lint', (done)->
   gulp.src ['src/**/*.coffee', 'test/**/*.coffee']
