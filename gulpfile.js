@@ -8,36 +8,30 @@ var mocha = require('gulp-mocha')
 var cover = require('gulp-coverage')
 var coveralls = require('gulp-coveralls')
 var eslint = require('gulp-eslint')
-var gulpSequence = require('gulp-sequence')
 var clean = require('gulp-clean')
-
-var lintTargets = [
-  ['./*.js', './'],
-  ['src/**/*.js', 'src/'],
-  ['test/**/*.js', 'test/']
-]
+var gulpSequence = require('gulp-sequence')
 
 gulp.task('clean', function () {
   gulp.src(['lib/**/*'], {read: false})
     .pipe(clean())
 })
 
-gulp.task('lint', function (done) {
-  Promise.all(lintTargets.map(function (target) {
-    return gulp.src(target[0])
-      .pipe(eslint({
-        useEslintrc: true,
-        fix: false
-      }))
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError())
-  })).then(function () {
-    done()
-  })
+gulp.task('lint', function () {
+  gulp.src(['./*.js', 'src/**/*.js', 'test/**/*.js'])
+    .pipe(eslint({
+      useEslintrc: true,
+      fix: false
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 })
 
-gulp.task('fix', function (done) {
-  Promise.all(lintTargets.map(function (target) {
+gulp.task('fix', function () {
+  [
+    ['./*.js', './'],
+    ['src/**/*.js', 'src/'],
+    ['test/**/*.js', 'test/']
+  ].forEach(function (target) {
     return gulp.src(target[0])
       .pipe(eslint({
         useEslintrc: true,
@@ -46,8 +40,6 @@ gulp.task('fix', function (done) {
       .pipe(gulp.dest(target[1]))
       .pipe(eslint.format())
       .pipe(eslint.failAfterError())
-  })).then(function () {
-    done()
   })
 })
 
