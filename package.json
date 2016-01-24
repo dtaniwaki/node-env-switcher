@@ -4,9 +4,7 @@
   "description": "Switch env per request",
   "main": "src/index.js",
   "scripts": {
-    "post-install": "gulp build",
-    "build": "gulp build",
-    "rebuild": "gulp rebuild",
+    "lint": "gulp lint",
     "test": "gulp test --harmony",
     "coverage": "gulp coverage --harmony",
     "coveralls": "gulp coveralls --harmony"
