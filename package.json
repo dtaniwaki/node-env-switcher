@@ -7,9 +7,9 @@
     "post-install": "gulp build",
     "build": "gulp build",
     "rebuild": "gulp rebuild",
-    "test": "gulp test",
-    "coverage": "gulp coverage",
-    "coveralls": "gulp coveralls"
+    "test": "gulp --harmony test",
+    "coverage": "gulp --harmony coverage",
+    "coveralls": "gulp --harmony coveralls"
   },
   "repository": {
     "type": "git",
