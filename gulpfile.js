@@ -73,30 +73,30 @@ gulp.task('test', function () {
     }))
 })
 
-gulp.task('coverage', function () {
+gulp.task('coverage', ['rebuild'], function () {
   gulp.src(['test/**/*.js'], {read: false})
-    .pipe(cover.instrument, {
-      pattern: ['src/**/*.js'],
+    .pipe(cover.instrument({
+      pattern: ['lib/**/*.js'],
       debugDirectory: 'debug'
-    })
+    }))
     .pipe(mocha())
-    .pipe(cover.report, {
+    .pipe(cover.report({
       outFile: 'coverage.html',
       reporter: 'html'
-    })
+    }))
 })
 
-gulp.task('coveralls', function () {
+gulp.task('coveralls', ['rebuild'], function () {
   gulp.src(['test/**/*.js'], {read: false})
-    .pipe(cover.instrument, {
-      pattern: ['src/**/*.js'],
+    .pipe(cover.instrument({
+      pattern: ['lib/**/*.js'],
       debugDirectory: 'debug'
-    })
+    }))
     .pipe(mocha())
     .pipe(cover.gather())
-    .pipe(cover.format, {
+    .pipe(cover.format({
       reporter: 'lcov'
-    })
+    }))
     .pipe(coveralls())
 })
 
