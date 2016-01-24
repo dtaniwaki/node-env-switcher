@@ -1,11 +1,8 @@
 language: node_js
 node_js:
   - "0.10"
-  - "0.11"
+  - "0.12"
+  - "5.0"
 script:
-  - "npm run prepare"
-  - "npm run build"
-  # - "npm run test"
-  # Generators are not supported in Gulp so far.
-  #   https://github.com/dylanb/gulp-coverage/issues/21 
-  # - "npm run coveralls"
+  - "npm run rebuild test"
+  - "npm run coveralls"
