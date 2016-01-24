@@ -8,7 +8,7 @@ const mocha = require('gulp-mocha')
 const cover = require('gulp-coverage')
 const coveralls = require('gulp-coveralls')
 const eslint = require('gulp-eslint')
-const runSequence = require('run-sequence')
+const gulpSequence = require('gulp-sequence')
 const clean = require('gulp-clean')
 
 let lintTargets = [
@@ -17,26 +17,28 @@ let lintTargets = [
   ['test/**/*.js', 'test/']
 ]
 
-gulp.task('clean', function (done) {
+gulp.task('clean', function () {
   gulp.src(['lib/**/*'], {read: false})
     .pipe(clean())
 })
 
 gulp.task('lint', function (done) {
-  lintTargets.forEach(function (target) {
-    gulp.src(target[0])
+  Promise.all(lintTargets.map(function (target) {
+    return gulp.src(target[0])
       .pipe(eslint({
         useEslintrc: true,
         fix: false
       }))
       .pipe(eslint.format())
       .pipe(eslint.failAfterError())
+  })).then(function () {
+    done()
   })
 })
 
 gulp.task('fix', function (done) {
-  lintTargets.forEach(function (target) {
-    gulp.src(target[0])
+  Promise.all(lintTargets.map(function (target) {
+    return gulp.src(target[0])
       .pipe(eslint({
         useEslintrc: true,
         fix: true
@@ -44,10 +46,12 @@ gulp.task('fix', function (done) {
       .pipe(gulp.dest(target[1]))
       .pipe(eslint.format())
       .pipe(eslint.failAfterError())
+  })).then(function () {
+    done()
   })
 })
 
-gulp.task('compile', function (done) {
+gulp.task('compile', function () {
   gulp.src(['src/**/*.js'])
     .pipe(sourcemaps.init())
     .pipe(babel({
@@ -60,7 +64,7 @@ gulp.task('compile', function (done) {
     .pipe(gulp.dest('lib'))
 })
 
-gulp.task('test', function (done) {
+gulp.task('test', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(mocha({
       reporter: 'spec',
@@ -69,7 +73,7 @@ gulp.task('test', function (done) {
     }))
 })
 
-gulp.task('coverage', function (done) {
+gulp.task('coverage', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(cover.instrument, {
       pattern: ['lib/**/*.js'],
@@ -82,7 +86,7 @@ gulp.task('coverage', function (done) {
     })
 })
 
-gulp.task('coveralls', function (done) {
+gulp.task('coveralls', function () {
   gulp.src(['test/**/*.js'], {read: false})
     .pipe(cover.instrument, {
       pattern: ['lib/**/*.js'],
@@ -96,14 +100,8 @@ gulp.task('coveralls', function (done) {
     .pipe(coveralls())
 })
 
-gulp.task('build', function (done) {
-  runSequence('lint', 'compile', done)
-})
+gulp.task('build', gulpSequence('lint', 'compile'))
 
-gulp.task('rebuild', ['clean'], function (done) {
-  runSequence('build', done)
-})
+gulp.task('rebuild', gulpSequence('clean', 'build'))
 
-gulp.task('default', function (done) {
-  runSequence('rebuild', 'test', done)
-})
+gulp.task('default', gulpSequence('rebuild', 'test'))

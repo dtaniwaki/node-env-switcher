@@ -4,5 +4,6 @@ node_js:
   - "0.12"
   - "5.0"
 script:
-  - "npm run rebuild test"
+  - "npm run rebuild"
+  - "npm run test"
   - "npm run coveralls"

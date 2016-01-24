@@ -42,6 +42,7 @@
     "gulp-coveralls": "^0.1.4",
     "gulp-eslint": "^1.1.1",
     "gulp-mocha": "^1.1.1",
+    "gulp-sequence": "^0.4.4",
     "gulp-sourcemaps": "^1.2.4",
     "koa": "^0.12.2",
     "run-sequence": "^1.1.5",
