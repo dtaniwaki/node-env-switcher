@@ -46,7 +46,6 @@
     "gulp-sequence": "^0.4.4",
     "gulp-sourcemaps": "^1.2.4",
     "koa": "^0.12.2",
-    "run-sequence": "^1.1.5",
     "sinon": "^1.17.2",
     "sinon-chai": "^2.6.0",
     "supertest": "^0.14.0"
