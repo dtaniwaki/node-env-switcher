@@ -7,15 +7,30 @@ cover = require 'gulp-coverage'
 coveralls = require 'gulp-coveralls'
 runSequence = require('run-sequence')
 clean = require('gulp-clean')
+eslint = require('gulp-eslint')
 
 gulp.task 'clean', (done)->
   gulp.src(['src/**/*'], {read: false})
   .pipe(clean())
 
-gulp.task 'lint', (done)->
-  gulp.src ['src/**/*.coffee', 'test/**/*.coffee']
-  .pipe coffeelint opt: (require "./_lintopts")
-  .pipe coffeelint.reporter()
+gulp.task 'lint', (done) ->
+  gulp.src('src/**/*.coffee')
+    .pipe(eslint({
+      useEslintrc: true,
+      fix: false
+    }))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+
+gulp.task 'fix', (done) ->
+  gulp.src('src/**/*.coffee')
+    .pipe(eslint({
+      useEslintrc: true,
+      fix: true
+    }))
+    .pipe(gulp.dest('src/'))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
 
 gulp.task 'compile', (done)->
   gulp.src ['src/**/*.coffee']

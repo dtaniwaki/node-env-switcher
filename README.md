@@ -5,6 +5,7 @@
 [![Coverage Status][coverage-image]][coverage-link]
 [![dependency Status][dep-image]][dep-link]
 [![devDependency Status][dev-dep-image]][dev-dep-link]
+[![js-style][js-style-image]][js-style-link]
 
 Switch env per request.
 
@@ -85,3 +86,6 @@ Copyright (c) 2014 Daisuke Taniwaki. See [LICENSE](LICENSE) for details.
 [dep-link]: https://david-dm.org/dtaniwaki/node-env-switcher#info=dependencies
 [dev-dep-image]: https://david-dm.org/dtaniwaki/node-env-switcher/dev-status.svg
 [dev-dep-link]: https://david-dm.org/dtaniwaki/node-env-switcher#info=devDependencies
+[js-style-image]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat
+[js-style-link]: https://github.com/feross/standard
+
