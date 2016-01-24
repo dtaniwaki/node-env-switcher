@@ -1,17 +1,17 @@
 'use strict'
 
 require('babel-core/register')
-const gulp = require('gulp')
-const babel = require('gulp-babel')
-const sourcemaps = require('gulp-sourcemaps')
-const mocha = require('gulp-mocha')
-const cover = require('gulp-coverage')
-const coveralls = require('gulp-coveralls')
-const eslint = require('gulp-eslint')
-const gulpSequence = require('gulp-sequence')
-const clean = require('gulp-clean')
+var gulp = require('gulp')
+var babel = require('gulp-babel')
+var sourcemaps = require('gulp-sourcemaps')
+var mocha = require('gulp-mocha')
+var cover = require('gulp-coverage')
+var coveralls = require('gulp-coveralls')
+var eslint = require('gulp-eslint')
+var gulpSequence = require('gulp-sequence')
+var clean = require('gulp-clean')
 
-let lintTargets = [
+var lintTargets = [
   ['./*.js', './'],
   ['src/**/*.js', 'src/'],
   ['test/**/*.js', 'test/']
